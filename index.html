@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mercury Picker</title>
+  </head>
+  <body>
+    <ul class="mercury-picker">
+      <li><label><input type="checkbox" />something</label></li>
+      <li><label><input type="checkbox" />else</label></li>
+      <li><label><input type="checkbox" />happened</label></li>
+      <li><label><input type="checkbox" />here</label></li>
+    </ul>
+    <script>
+      const pickers = document.querySelectorAll('.mercury-picker')
+      for (const p of pickers) {
+        mercurify(p)
+      }
+
+      /**
+       * @param {HTMLElement} picker
+       */
+      function mercurify(picker) {
+        const checkboxes = picker.querySelectorAll('input[type="checkbox"]')
+        let n_checked = 0
+        let move_down = true
+        if (checkboxes.length > 0) {
+          checkboxes[0].checked = true
+          n_checked++
+        }
+        console.log(checkboxes)
+        // what happens if checkboxes.length === 1?
+        for (const [index, cb] of checkboxes.entries()) {
+          cb.addEventListener('change', () => {
+            // The 'change' event fires AFTER the checkbox has been checked/unchecked.
+            console.log('checked?', cb.checked)
+            n_checked += cb.checked ? 1 : -1
+            console.log('n_checked:', n_checked)
+            if (n_checked === 0) {
+              if (checkboxes.length > 1) {
+                if (move_down && index === checkboxes.length - 1) {
+                  move_down = false
+                } else if (!move_down && index === 0) {
+                  move_down = true
+                }
+
+                if (move_down) {
+                  checkboxes[index + 1].checked = true
+                } else {
+                  checkboxes[index - 1].checked = true
+                }
+              } else {
+                cb.checked = true
+              }
+
+              n_checked++
+            }
+          })
+        }
+      }
+    </script>
+  </body>
+</html>
