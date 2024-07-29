@@ -4,12 +4,22 @@
     <title>Mercury Picker</title>
   </head>
   <body>
-    <ul class="mercury-picker">
-      <li><label><input type="checkbox" />something</label></li>
-      <li><label><input type="checkbox" />else</label></li>
-      <li><label><input type="checkbox" />happened</label></li>
-      <li><label><input type="checkbox" />here</label></li>
-    </ul>
+    <div>
+      <label>Simple</label>
+      <ul class="mercury-picker">
+        <li><label><input type="checkbox" />something</label></li>
+        <li><label><input type="checkbox" />else</label></li>
+        <li><label><input type="checkbox" />happened</label></li>
+        <li><label><input type="checkbox" />here</label></li>
+      </ul>
+    </div>
+    <div>
+      <label>Single Element</label>
+      <ul class="mercury-picker">
+        <li><label><input type="checkbox" />something</label></li>
+      </ul>
+    </div>
+
     <script>
       const pickers = document.querySelectorAll('.mercury-picker')
       for (const p of pickers) {
